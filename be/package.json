@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsc -b && node dist/server.js"
+    "build": "tsc -b",
+    "dev": "tsc -b && node dist/server.js",
+    "start":"node dist/server.js"
   },
   "keywords": [],
   "author": "kshetritej",
