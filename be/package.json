@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "tsc -b",
+    "build": "npm install && tsc -b",
     "dev": "tsc -b && node dist/server.js",
     "start":"node dist/server.js"
   },
