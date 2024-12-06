@@ -5,11 +5,13 @@ import cors from "cors";
 
 const app = express();
 app.use(express.json());
-app.use(cors({
-    origin: 'https://swash-tackle.vercel.app/',
-    methods: ['GET', 'POST'],
-    credentials: true
-}))
+app.use(
+  cors({
+    origin: "https://swash-tackle.vercel.app",
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 app.get("/", (req: Request, res: Response) => {
   res.status(200).json({ message: "Hi!, How can I help you?" });
 });
@@ -17,7 +19,7 @@ app.get("/", (req: Request, res: Response) => {
 app.post("/ask", async (req: Request, res: Response) => {
   const schema = JSON.stringify(req.body.prompt);
   const item = req.body.about;
-  const result = await getResult(schema,item );
+  const result = await getResult(schema, item);
   res.json(result);
 });
 
