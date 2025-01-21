@@ -6,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Loader2 } from 'lucide-react'
 import { Input } from './components/ui/input'
 import axios from 'axios'
+import { ModeToggle } from './components/mode-toggle'
 
 type FormData = {
   prompt: string
@@ -38,9 +39,13 @@ export default function GPTWrapper() {
 
   return (
     <div className="container mx-auto p-4">
-      <div className='flex flex-col items-center justify-center mb-8'>
-        <h1 className="text-3xl font-bold  text-center">Swash Tackle </h1>
-        <h2>GPT API Request Sample Generator</h2>
+      <div className='flex  items-center justify-between mb-8'>
+        <div className='flex flex-col'>
+          <h1 className="text-3xl font-bold">Swash Tackle </h1>
+          <h2>GPT API Request Sample Generator </h2>
+        </div>
+
+        <ModeToggle />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Card>
@@ -77,7 +82,7 @@ export default function GPTWrapper() {
             <CardDescription>The generated sample will appear here</CardDescription>
           </CardHeader>
           <CardContent>
-            <pre className="bg-gray-100 p-4 rounded-md overflow-auto min-h-[200px] max-h-[400px]">
+            <pre className="border p-4 rounded-md overflow-auto min-h-[200px] max-h-[400px]">
               {response || 'No sample generated yet.'}
             </pre>
           </CardContent>
