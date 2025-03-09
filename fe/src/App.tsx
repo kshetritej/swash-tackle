@@ -3,12 +3,12 @@ import { useForm } from 'react-hook-form'
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Copy, Loader2 } from 'lucide-react'
+import { Loader2, LucideCheck, LucideCopy } from 'lucide-react'
 import { Input } from './components/ui/input'
 import axios from 'axios'
 import { ModeToggle } from './components/mode-toggle'
 import { useRef } from 'react'
-import { toast } from './hooks/use-toast'
+import { toast } from 'sonner'
 
 type FormData = {
   prompt: string
@@ -19,6 +19,7 @@ export default function GPTWrapper() {
   const baseUrl = import.meta.env.VITE_API_URL
   const [response, setResponse] = useState<string>('')
   const [isLoading, setIsLoading] = useState(false)
+  const [isCopy, setIsCopy] = useState(false)
 
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>()
 
@@ -27,10 +28,11 @@ export default function GPTWrapper() {
   const handleCopy = () => {
     const microcopy = resultRef?.current?.textContent;
     navigator.clipboard.writeText(microcopy!)
-    toast({
-      title: "Content copied!",
-      variant: "success"
-    })
+    setIsCopy(true);
+    setTimeout(() => {
+      setIsCopy(false)
+    }, 1000);
+    return toast.success('Copied to clipboard', { position: 'top-center' })
   }
   const onSubmit = async (data: FormData) => {
     setIsLoading(true)
@@ -96,7 +98,7 @@ export default function GPTWrapper() {
           <CardContent className='relative'>
             <pre className="border p-4 rounded-md overflow-auto min-h-[200px] max-h-[400px]" ref={resultRef} >
               {response || 'No sample generated yet.'}
-              <Button onClick={() => handleCopy()} className='absolute top-3 right-10' size={'icon'}><Copy /></Button>
+              <Button variant={'outline'} onClick={() => handleCopy()} className='absolute top-3 right-10' size={'icon'}>{isCopy ? <LucideCheck /> : <LucideCopy />}</Button>
             </pre>
           </CardContent>
         </Card>

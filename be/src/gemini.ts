@@ -30,7 +30,6 @@ the response should be in this format:
 }"
 response can be in this format: 
 "{
-  "notificationId":"3fa85f64-5717-4562-b3fc-2c963f66afa6",
   "notificationType":0,
   "notificationContext":0,
   "notificationContent":"Hurry Up! This is the last day to save your money!",
@@ -39,7 +38,7 @@ response can be in this format:
   "userId":"3fa85f64-5717-4562-b3fc-2c963f66afa6"
 }"
 this may give you the context, and I hope you understand what I am saying.
-==And this is just for the refererence the given json schema is related to ${item}==
+==And this is just for the reference the given json schema is related to ${item}==
 you should omit the above line inside "== ==" and figure out yourself if you don't have anything after "to" in above line.
 
 You should not omit or add more in the keys of the schema, provide everything that is in the given schema and add nothing more than that.
@@ -49,8 +48,5 @@ Any extra response you send will cause the error.
   Generate Realistic API request for this json schema :\
 ` + schema;
   const result = await model.generateContent(prompt);
-  console.log({
-    "result": result.response.text(),
-  })
   return result.response.text();
 }
